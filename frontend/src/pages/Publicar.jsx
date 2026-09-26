@@ -142,7 +142,7 @@ export default function Publicar() {
 
   const Campo = ({ k, label, children }) => (
     <label className={errores[k] ? 'con-error' : ''}>
-      {label} <span className="req">*</span>
+      <span>{label} <span className="req">*</span></span>
       {children}
       {errores[k] && <small className="error">{errores[k]}</small>}
     </label>
