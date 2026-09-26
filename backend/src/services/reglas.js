@@ -25,11 +25,11 @@ function estadoSubasta(v, ahora = new Date()) {
 
 /**
  * Monto mínimo aceptado para la siguiente puja:
- *  - sin pujas: el monto base (ninguna oferta puede ser menor al base)
+ *  - sin pujas: debe ser MAYOR al monto base → se sugiere base + Q 1
  *  - con pujas: oferta actual + 10 % (redondeado hacia arriba al centavo)
  */
 function minimoSiguiente(v) {
-  if (v.PujaActual == null) return Number(v.PrecioBase);
+  if (v.PujaActual == null) return Number(v.PrecioBase) + 1;
   const cent = Math.round(Number(v.PujaActual) * 100);
   return Math.ceil((cent * 110) / 100) / 100;
 }

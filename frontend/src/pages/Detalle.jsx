@@ -77,8 +77,13 @@ export default function Detalle() {
     setMsg(null);
     const m = Number(monto);
     // Validación rápida en el cliente (el servidor vuelve a validar todo)
-    if (!(m >= v.minimoSiguiente)) {
-      setMsg({ tipo: 'error', texto: `La oferta mínima es ${quetzales(v.minimoSiguiente)}.` });
+    if (v.pujaActual == null ? !(m > v.precioBase) : !(m >= v.minimoSiguiente)) {
+      setMsg({
+        tipo: 'error',
+        texto: v.pujaActual == null
+          ? `La oferta debe ser mayor al monto base (${quetzales(v.precioBase)}).`
+          : `La oferta mínima es ${quetzales(v.minimoSiguiente)} (actual + 10 %).`,
+      });
       return;
     }
     setEnviando(true);
@@ -192,10 +197,10 @@ export default function Detalle() {
 
             {activa && usuario && !v.esPropietario && (
               <form className="form-puja" onSubmit={ofertar}>
-                <label htmlFor="monto">Tu oferta (mínimo {quetzales(v.minimoSiguiente)})</label>
+                <label htmlFor="monto">{v.pujaActual == null ? `Tu oferta (mayor a ${quetzales(v.precioBase)})` : `Tu oferta (mínimo ${quetzales(v.minimoSiguiente)})`}</label>
                 <div className="input-monto">
                   <span>Q</span>
-                  <input id="monto" type="number" step="0.01" min={v.minimoSiguiente} value={monto} onChange={(e) => setMonto(e.target.value)} />
+                  <input id="monto" type="number" step="0.01" value={monto} onChange={(e) => setMonto(e.target.value)} />
                 </div>
                 <div className="sugeridos">
                   {sugeridos.map((s) => <button type="button" key={s} onClick={() => setMonto(String(s))}>{quetzales(s)}</button>)}

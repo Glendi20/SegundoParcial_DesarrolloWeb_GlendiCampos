@@ -18,28 +18,28 @@ const D = 24 * H;
 
 // dueño = índice en USUARIOS; ini/fin en milisegundos relativos al momento del seed
 const VEHICULOS = [
-  { clave: 'corolla', dueno: 0, anio: 2019, tipo: 'Automóvil', marca: 'Toyota', modelo: 'Corolla LE', motor: '1.8L 4 cil.', trans: 'CVT', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Verde', base: 20000, ini: -1 * D, fin: 20 * D, desc: 'Golpe leve en defensa trasera. Arranca y camina. Título limpio.', color: '#c0392b' },
-  { clave: 'hilux', dueno: 1, anio: 2018, tipo: 'Pickup', marca: 'Toyota', modelo: 'Hilux SR', motor: '2.4L Turbo Diésel', trans: 'Manual', comb: 'Diésel', tren: '4WD', cil: 4, danio: 'Amarillo', base: 65000, ini: -2 * D, fin: 25 * D, desc: 'Daño lateral izquierdo, puertas con hundimiento. Motor en buen estado.', color: '#7f8c8d' },
-  { clave: 'civic', dueno: 2, anio: 2020, tipo: 'Automóvil', marca: 'Honda', modelo: 'Civic EX', motor: '1.5L Turbo', trans: 'CVT', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Verde', base: 45000, ini: -3 * H, fin: 6 * H, desc: 'Rayones superficiales. Interior impecable. Subasta de cierre rápido.', color: '#2c3e50' },
-  { clave: 'cx5', dueno: 0, anio: 2021, tipo: 'SUV', marca: 'Mazda', modelo: 'CX-5 Touring', motor: '2.5L 4 cil.', trans: 'Automática', comb: 'Gasolina', tren: 'AWD', cil: 4, danio: 'Amarillo', base: 70000, ini: -1 * D, fin: 30 * D, desc: 'Impacto frontal medio, bolsas de aire intactas. Reparable.', color: '#8e1b1b' },
-  { clave: 'f150', dueno: 1, anio: 2016, tipo: 'Pickup', marca: 'Ford', modelo: 'F-150 XLT', motor: '5.0L V8', trans: 'Automática', comb: 'Gasolina', tren: '4WD', cil: 8, danio: 'Rojo', base: 35000, ini: -1 * D, fin: 15 * D, desc: 'Volcadura. Se vende como salvamento para piezas.', color: '#1f3a93' },
-  { clave: 'tucson', dueno: 2, anio: 2019, tipo: 'SUV', marca: 'Hyundai', modelo: 'Tucson GLS', motor: '2.0L 4 cil.', trans: 'Automática', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Verde', base: 52000, ini: -2 * D, fin: 35 * D, desc: 'Daño por granizo leve. Mecánica perfecta.', color: '#ecf0f1' },
-  { clave: 'model3', dueno: 0, anio: 2021, tipo: 'Automóvil', marca: 'Tesla', modelo: 'Model 3 Long Range', motor: 'Doble motor eléctrico', trans: 'Automática', comb: 'Eléctrico', tren: 'AWD', cil: 0, danio: 'Amarillo', base: 120000, ini: -1 * D, fin: 40 * D, desc: 'Daño en suspensión delantera derecha. Batería al 92 %.', color: '#f5f5f5' },
-  { clave: 'wrangler', dueno: 1, anio: 2018, tipo: 'SUV', marca: 'Jeep', modelo: 'Wrangler Sport', motor: '3.6L V6', trans: 'Manual', comb: 'Gasolina', tren: '4WD', cil: 6, danio: 'Rojo', base: 40000, ini: -1 * D, fin: 18 * D, desc: 'Daño por inundación. Se vende con título de salvamento.', color: '#27ae60' },
-  { clave: 'sportage', dueno: 2, anio: 2020, tipo: 'SUV', marca: 'Kia', modelo: 'Sportage LX', motor: '2.4L 4 cil.', trans: 'Automática', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Amarillo', base: 48000, ini: 1 * D, fin: 21 * D, desc: 'Próxima subasta. Golpe en puerta trasera derecha.', color: '#d35400' },
-  { clave: 'frontier', dueno: 0, anio: 2017, tipo: 'Pickup', marca: 'Nissan', modelo: 'Frontier SV', motor: '2.5L 4 cil.', trans: 'Manual', comb: 'Gasolina', tren: 'RWD', cil: 4, danio: 'Verde', base: 38000, ini: -5 * D, fin: 28 * D, desc: 'Uso normal, detalles cosméticos.', color: '#95a5a6' },
-  { clave: 'rav4', dueno: 1, anio: 2022, tipo: 'SUV', marca: 'Toyota', modelo: 'RAV4 Hybrid XLE', motor: '2.5L Híbrido', trans: 'CVT', comb: 'Híbrido', tren: 'AWD', cil: 4, danio: 'Verde', base: 110000, ini: -1 * D, fin: 45 * D, desc: 'Daño menor en faro delantero. Pocas millas.', color: '#34495e' },
-  { clave: 'yamaha', dueno: 2, anio: 2021, tipo: 'Motocicleta', marca: 'Yamaha', modelo: 'MT-07', motor: '689cc bicilíndrico', trans: 'Manual', comb: 'Gasolina', tren: 'RWD', cil: 2, danio: 'Amarillo', base: 20000, ini: -1 * D, fin: 22 * D, desc: 'Caída lateral, carenado y espejo dañados.', color: '#2980b9' },
+  { clave: 'corolla', dueno: 0, anio: 2019, tipo: 'Automóvil', marca: 'Toyota', modelo: 'Corolla LE', motor: '1.8L 4 cil.', trans: 'CVT', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Verde', base: 20000, ini: -1 * D, fin: 75 * D, desc: 'Golpe leve en defensa trasera. Arranca y camina. Título limpio.', color: '#c0392b' },
+  { clave: 'hilux', dueno: 1, anio: 2018, tipo: 'Pickup', marca: 'Toyota', modelo: 'Hilux SR', motor: '2.4L Turbo Diésel', trans: 'Manual', comb: 'Diésel', tren: '4WD', cil: 4, danio: 'Amarillo', base: 65000, ini: -2 * D, fin: 90 * D, desc: 'Daño lateral izquierdo, puertas con hundimiento. Motor en buen estado.', color: '#7f8c8d' },
+  { clave: 'civic', dueno: 2, anio: 2020, tipo: 'Automóvil', marca: 'Honda', modelo: 'Civic EX', motor: '1.5L Turbo', trans: 'CVT', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Verde', base: 45000, ini: -10 * D, fin: -1 * D, desc: 'Rayones superficiales. Interior impecable. (Subasta ya finalizada: ejemplo de vehículo vendido.)', color: '#2c3e50' },
+  { clave: 'cx5', dueno: 0, anio: 2021, tipo: 'SUV', marca: 'Mazda', modelo: 'CX-5 Touring', motor: '2.5L 4 cil.', trans: 'Automática', comb: 'Gasolina', tren: 'AWD', cil: 4, danio: 'Amarillo', base: 70000, ini: -1 * D, fin: 105 * D, desc: 'Impacto frontal medio, bolsas de aire intactas. Reparable.', color: '#8e1b1b' },
+  { clave: 'f150', dueno: 1, anio: 2016, tipo: 'Pickup', marca: 'Ford', modelo: 'F-150 XLT', motor: '5.0L V8', trans: 'Automática', comb: 'Gasolina', tren: '4WD', cil: 8, danio: 'Rojo', base: 35000, ini: -1 * D, fin: 80 * D, desc: 'Volcadura. Se vende como salvamento para piezas.', color: '#1f3a93' },
+  { clave: 'tucson', dueno: 2, anio: 2019, tipo: 'SUV', marca: 'Hyundai', modelo: 'Tucson GLS', motor: '2.0L 4 cil.', trans: 'Automática', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Verde', base: 52000, ini: -2 * D, fin: 120 * D, desc: 'Daño por granizo leve. Mecánica perfecta.', color: '#ecf0f1' },
+  { clave: 'model3', dueno: 0, anio: 2021, tipo: 'Automóvil', marca: 'Tesla', modelo: 'Model 3 Long Range', motor: 'Doble motor eléctrico', trans: 'Automática', comb: 'Eléctrico', tren: 'AWD', cil: 0, danio: 'Amarillo', base: 120000, ini: -1 * D, fin: 110 * D, desc: 'Daño en suspensión delantera derecha. Batería al 92 %.', color: '#f5f5f5' },
+  { clave: 'wrangler', dueno: 1, anio: 2018, tipo: 'SUV', marca: 'Jeep', modelo: 'Wrangler Sport', motor: '3.6L V6', trans: 'Manual', comb: 'Gasolina', tren: '4WD', cil: 6, danio: 'Rojo', base: 40000, ini: -12 * D, fin: -2 * D, desc: 'Daño por inundación. Se vende con título de salvamento. (Subasta finalizada sin ofertas: ejemplo de subasta desierta.)', color: '#27ae60' },
+  { clave: 'sportage', dueno: 2, anio: 2020, tipo: 'SUV', marca: 'Kia', modelo: 'Sportage LX', motor: '2.4L 4 cil.', trans: 'Automática', comb: 'Gasolina', tren: 'FWD', cil: 4, danio: 'Amarillo', base: 48000, ini: 3 * D, fin: 100 * D, desc: 'Próxima subasta. Golpe en puerta trasera derecha.', color: '#d35400' },
+  { clave: 'frontier', dueno: 0, anio: 2017, tipo: 'Pickup', marca: 'Nissan', modelo: 'Frontier SV', motor: '2.5L 4 cil.', trans: 'Manual', comb: 'Gasolina', tren: 'RWD', cil: 4, danio: 'Verde', base: 38000, ini: -5 * D, fin: 85 * D, desc: 'Uso normal, detalles cosméticos.', color: '#95a5a6' },
+  { clave: 'rav4', dueno: 1, anio: 2022, tipo: 'SUV', marca: 'Toyota', modelo: 'RAV4 Hybrid XLE', motor: '2.5L Híbrido', trans: 'CVT', comb: 'Híbrido', tren: 'AWD', cil: 4, danio: 'Verde', base: 110000, ini: -1 * D, fin: 115 * D, desc: 'Daño menor en faro delantero. Pocas millas.', color: '#34495e' },
+  { clave: 'yamaha', dueno: 2, anio: 2021, tipo: 'Motocicleta', marca: 'Yamaha', modelo: 'MT-07', motor: '689cc bicilíndrico', trans: 'Manual', comb: 'Gasolina', tren: 'RWD', cil: 2, danio: 'Amarillo', base: 20000, ini: -1 * D, fin: 95 * D, desc: 'Caída lateral, carenado y espejo dañados.', color: '#2980b9' },
 ];
 
 // Pujas de ejemplo: [clave, índice de usuario, monto]
 const PUJAS = [
-  ['corolla', 1, 20000], ['corolla', 2, 22000], ['corolla', 1, 24500],
-  ['hilux', 2, 65000], ['hilux', 0, 72000],
-  ['civic', 0, 45000], ['civic', 1, 50000],
-  ['cx5', 2, 70000],
-  ['tucson', 0, 52000], ['tucson', 1, 57500], ['tucson', 0, 63500],
-  ['yamaha', 0, 20000],
+  ['corolla', 1, 20500], ['corolla', 2, 22600], ['corolla', 1, 24900],
+  ['hilux', 2, 66000], ['hilux', 0, 72600],
+  ['civic', 0, 45500], ['civic', 1, 50100],
+  ['cx5', 2, 71000],
+  ['tucson', 0, 52500], ['tucson', 1, 57800], ['tucson', 0, 63600],
+  ['yamaha', 0, 20500],
 ];
 
 const VISTAS = ['Frontal', 'Lateral', 'Trasera', 'Interior', 'Motor'];
@@ -85,9 +85,12 @@ async function seed({ reset = false } = {}) {
     }
   }
 
-  let t = ahora - 10 * 60e3;
+  // Las pujas se fechan dentro de la ventana de cada subasta (antes de su cierre)
+  const porClave = Object.fromEntries(VEHICULOS.map((v) => [v.clave, v]));
+  let n = 0;
   for (const [clave, u, monto] of PUJAS) {
-    t += 30e3;
+    const fin = ahora + porClave[clave].fin;
+    const t = Math.min(ahora, fin - 3 * H) - 20 * 60e3 + (n++) * 60e3;
     await pool.request().input('v', sql.Int, vid[clave]).input('u', sql.Int, ids[u]).input('m', sql.Decimal(12, 2), monto)
       .input('f', sql.DateTime2, new Date(t))
       .query(`INSERT INTO dbo.Pujas (VehiculoId, UsuarioId, Monto, Fecha) VALUES (@v,@u,@m,@f);

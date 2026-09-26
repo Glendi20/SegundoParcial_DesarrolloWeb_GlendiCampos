@@ -6,7 +6,7 @@
  * Reglas:
  *  1. Debe haber sesión (lo garantiza el middleware).
  *  2. La subasta debe haber iniciado y no haber cerrado (hora del servidor).
- *  3. Primera puja: monto >= monto base.
+ *  3. Primera puja: monto > monto base (estrictamente mayor).
  *  4. Siguientes: monto > oferta actual y >= oferta actual + 10 %.
  *  5. El publicador no puede pujar por su propio vehículo.
  *  6. Si ya vas ganando no puedes volver a pujar contra ti mismo.
@@ -44,13 +44,13 @@ async function registrarPuja(vehiculoId, usuarioId, montoCrudo) {
     if (v.LiderId === usuarioId) return fallo(409, '¡Ya tienes la oferta más alta! Espera a que alguien te supere.');
 
     const minimo = minimoSiguiente(v);
-    if (v.PujaActual == null && monto < Number(v.PrecioBase)) {
-      return fallo(422, `La oferta no puede ser menor al monto base (${fmt(v.PrecioBase)}).`, { minimoSiguiente: minimo });
+    if (v.PujaActual == null && monto <= Number(v.PrecioBase)) {
+      return fallo(422, `La oferta debe ser mayor al monto base (${fmt(v.PrecioBase)}).`, { minimoSiguiente: minimo });
     }
     if (v.PujaActual != null && monto <= Number(v.PujaActual)) {
       return fallo(422, `La oferta debe ser mayor a la oferta actual (${fmt(v.PujaActual)}).`, { minimoSiguiente: minimo });
     }
-    if (monto < minimo) {
+    if (v.PujaActual != null && monto < minimo) {
       return fallo(422, `La nueva puja debe superar la actual en al menos 10 %: mínimo ${fmt(minimo)}.`, { minimoSiguiente: minimo });
     }
 

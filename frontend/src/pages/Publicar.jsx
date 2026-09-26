@@ -230,7 +230,7 @@ export default function Publicar() {
             {Campo({ k: 'fechaInicio', label: 'Fecha y hora de inicio', children: <input type="datetime-local" value={d.fechaInicio} onChange={set('fechaInicio')} required disabled={conPujas} /> })}
             {Campo({ k: 'fechaCierre', label: 'Fecha y hora de cierre', children: <input type="datetime-local" value={d.fechaCierre} onChange={set('fechaCierre')} required /> })}
           </div>
-          {d.precioBase && <p className="muted">La subasta iniciará con un mínimo de <b>{quetzales(d.precioBase)}</b>; cada nueva puja debe superar la anterior en al menos 10 %.</p>}
+          {d.precioBase && <p className="muted">La primera oferta debe ser mayor a <b>{quetzales(d.precioBase)}</b>; cada nueva puja debe superar la anterior en al menos 10 %.</p>}
         </section>
 
         {error && <div className="alerta alerta-error">{error}</div>}

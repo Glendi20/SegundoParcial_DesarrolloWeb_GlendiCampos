@@ -4,7 +4,7 @@
 
 ### 👉 **https://subastas-copart-9250.azurewebsites.net**
 
-> Hospedado en **Azure App Service** (Linux, Node 24). Si el sitio lleva un rato sin visitas, la primera carga puede tardar unos segundos mientras el servidor y la base de datos "despiertan".
+> Hospedado en **Azure App Service** (Linux, Node 24, plan B1 con *Always On*) + **Azure SQL Database**.
 
 ## 🔑 Credenciales de prueba (usuarios pre-creados)
 
@@ -17,6 +17,8 @@
 **Prueba cruzada sugerida:** abre el sitio en 2 o 3 navegadores distintos (o una ventana normal + una de incógnito), inicia sesión con un usuario diferente en cada uno y entra al mismo vehículo. Al ofertar en uno, los demás ven al instante la nueva oferta, el historial y el temporizador; el que iba ganando pasa de 🏆 *"¡Vas ganando esta subasta!"* a ⚠️ *"Tu oferta ha sido superada…"* sin recargar (F5).
 
 > Cada usuario tiene vehículos propios publicados (no puede pujar por los suyos), así que conviene pujar con un usuario distinto al publicador.
+>
+> El inventario de ejemplo incluye subastas activas (cierran en 2-4 meses), una **próxima**, una **vendida** (Honda Civic) y una **desierta** (Jeep Wrangler). Para ver un cierre en vivo, publica un vehículo con fecha de cierre a pocos minutos.
 
 ---
 
@@ -60,7 +62,7 @@
 ### D. Detalle y motor de subastas
 - Ficha técnica completa + **carrusel interactivo** (flechas, miniaturas, teclado, deslizamiento táctil y pantalla completa).
 - **Reglas de puja validadas en el servidor** (transacción con bloqueo de fila para evitar condiciones de carrera):
-  - ninguna oferta menor al monto base;
+  - la primera oferta debe ser **mayor** al monto base (ej. base Q 20,000 → Q 20,000 se rechaza);
   - cada nueva oferta debe ser **mayor** a la actual y superarla por **al menos 10 %**;
   - solo entre la fecha de inicio y la de cierre (hora del servidor) → si ya terminó: *"Oferta cerrada"*;
   - el publicador no puede pujar por su propio vehículo.
