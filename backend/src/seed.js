@@ -87,10 +87,10 @@ async function seed({ reset = false } = {}) {
 
   // Las pujas se fechan dentro de la ventana de cada subasta (antes de su cierre)
   const porClave = Object.fromEntries(VEHICULOS.map((v) => [v.clave, v]));
-  let n = 0;
+  let k = 0;
   for (const [clave, u, monto] of PUJAS) {
     const fin = ahora + porClave[clave].fin;
-    const t = Math.min(ahora, fin - 3 * H) - 20 * 60e3 + (n++) * 60e3;
+    const t = Math.min(ahora, fin - 3 * H) - 20 * 60e3 + (k++) * 60e3;
     await pool.request().input('v', sql.Int, vid[clave]).input('u', sql.Int, ids[u]).input('m', sql.Decimal(12, 2), monto)
       .input('f', sql.DateTime2, new Date(t))
       .query(`INSERT INTO dbo.Pujas (VehiculoId, UsuarioId, Monto, Fecha) VALUES (@v,@u,@m,@f);
