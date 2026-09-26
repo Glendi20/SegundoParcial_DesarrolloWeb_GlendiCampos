@@ -96,6 +96,12 @@ async function seed({ reset = false } = {}) {
       .query(`INSERT INTO dbo.Pujas (VehiculoId, UsuarioId, Monto, Fecha) VALUES (@v,@u,@m,@f);
               UPDATE dbo.Vehiculos SET PujaActual=@m, LiderId=@u, TotalPujas=TotalPujas+1 WHERE Id=@v;`);
   }
+  // Recalcula el resultado de las subastas ya cerradas (por si el cierre automático
+  // del servidor las marcó antes de que se insertaran sus pujas).
+  await pool.request().input('ahora', sql.DateTime2, new Date()).query(`
+    UPDATE dbo.Vehiculos
+      SET Resultado = CASE WHEN PujaActual IS NOT NULL AND PujaActual >= PrecioBase THEN 'Vendido' ELSE 'Desierta' END
+    WHERE FechaCierre <= @ahora`);
   console.log(`[seed] ${USUARIOS.length} usuarios, ${VEHICULOS.length} vehículos y ${PUJAS.length} pujas creados.`);
   return true;
 }
